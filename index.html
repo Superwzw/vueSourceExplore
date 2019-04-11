@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>my-vue</title>
+</head>
+<style>
+    #app {
+        text-align: center;
+    }
+</style>
+<body>
+    <div id="app">
+		<p>请输入:</p>
+		<input type="text" id="input">
+		<p id="p"></p>
+    </div>
+</body>
+
+<script src="./MyObserver.js"></script>
+<script src="./MyWatcher.js"></script>
+<script src="./index.js"></script>
+<script>
+	var app = new MyVue({
+		data: {
+			content:'',
+		}
+	});
+	console.log(app);
+	var input = document.getElementById('input');
+	var p  = document.getElementById('p');
+	input.addEventListener('keyup', function(e) {
+		app.content = e.target.value;
+	});
+	app.$watch('content', function(str) {
+		p.innerHTML = str;
+	})
+	app.$watch('content', function(str) {
+		input.value = str;
+	})
+</script>
+
+</html>
